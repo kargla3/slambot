@@ -1,0 +1,189 @@
+<?xml version="1.0" ?>
+<robot name="mapping_robot_v1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find mapping_robot_v1_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find mapping_robot_v1_description)/urdf/mapping_robot_v1.trans" />
+<xacro:include filename="$(find mapping_robot_v1_description)/urdf/mapping_robot_v1.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-1.7537274868631598e-16 9.742930482573111e-18 -2.5442577058725186e-06" rpy="0 0 0"/>
+    <mass value="14.655823361744716"/>
+    <inertia ixx="0.032673" iyy="0.073324" izz="0.100143" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_left_link_1">
+  <inertial>
+    <origin xyz="2.7755575615628914e-17 0.010000000000000023 9.540979117872439e-18" rpy="0 0 0"/>
+    <mass value="0.5698187556329606"/>
+    <inertia ixx="0.000288" iyy="0.000538" izz="0.000288" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.1 -0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/front_left_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.1 -0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/front_left_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_left_link_1">
+  <inertial>
+    <origin xyz="4.163336342344337e-17 0.010000000000000023 8.673617379884035e-19" rpy="0 0 0"/>
+    <mass value="0.5698187556329606"/>
+    <inertia ixx="0.000288" iyy="0.000538" izz="0.000288" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.1 -0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/back_left_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.1 -0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/back_left_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="middle_left_link"/>
+
+<link name="middle_right_link"/>
+
+<link name="back_right_link_1">
+  <inertial>
+    <origin xyz="4.163336342344337e-17 -0.010000000000000023 8.673617379884035e-19" rpy="0 0 0"/>
+    <mass value="0.5698187556329606"/>
+    <inertia ixx="0.000288" iyy="0.000538" izz="0.000288" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.1 0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/back_right_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.1 0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/back_right_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_right_link_1">
+  <inertial>
+    <origin xyz="2.7755575615628914e-17 -0.010000000000000023 9.540979117872439e-18" rpy="0 0 0"/>
+    <mass value="0.5698187556329606"/>
+    <inertia ixx="0.000288" iyy="0.000538" izz="0.000288" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.1 0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/front_right_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.1 0.084 0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://mapping_robot_v1_description/meshes/front_right_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_link"/>
+
+<joint name="Obrot 1" type="continuous">
+  <origin xyz="0.1 0.084 -0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_left_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Obrot 2" type="continuous">
+  <origin xyz="-0.1 0.084 -0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_left_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Obrot 3" type="continuous">
+  <origin xyz="-0.1 -0.084 -0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_right_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Obrot 4" type="continuous">
+  <origin xyz="0.1 -0.084 -0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_right_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="middle_left_wheel_joint" type="continuous">
+  <origin xyz="0.0 0.084 -0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="middle_left_link"/>
+  <axis xyz="0 1 0"/>
+</joint>
+
+<joint name="middle_right_wheel_joint" type="continuous">
+  <origin xyz="0.0 -0.084 -0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="middle_right_link"/>
+  <axis xyz="0 1 0"/>
+</joint>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.1" rpy="3.14159 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_link"/>
+</joint>
+
+<ros2_control name="DiffDriveESPSystem" type="system">
+  <hardware>
+    <plugin>diffdrive_esp/DiffDriveESPHardware</plugin>
+    <param name="device_port">/dev/ttyACM0</param>
+    <param name="baud_rate">115200</param>
+    <param name="timeout_ms">20</param>
+    <param name="wheel_separation">0.336</param>
+    <param name="wheel_radius">0.034</param>
+  </hardware>
+
+  <joint name="middle_left_wheel_joint">
+    <command_interface name="velocity"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="middle_right_wheel_joint">
+    <command_interface name="velocity"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+</ros2_control>
+
+</robot>

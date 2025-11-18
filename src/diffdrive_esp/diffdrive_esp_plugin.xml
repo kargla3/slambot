@@ -1,0 +1,12 @@
+
+<?xml version="1.0"?>
+<library path="diffdrive_esp">
+  <class name="diffdrive_esp/DiffDriveESPHardware" 
+         type="diffdrive_esp::DiffDriveESPHardware" 
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware interface for differential drive robot controlled via ESP32/ESP8266 microcontroller.
+      Supports velocity control and encoder feedback through serial communication.
+    </description>
+  </class>
+</library>
