@@ -7,10 +7,14 @@ slam_toolbox:
     base_frame: base_link
     scan_topic: /scan
     use_sim_time: false
+    mode: mapping
+
+    # map_file_name: /home/pi/slambot/src/slambot_description/maps/default.pgm
+    # map_start_at_dock: true
 
     # Scan Matching
     use_scan_matching: true
-    scan_queue_size: 20          # kolejka skanów, trochę większa żeby nie gubiło wiadomości
+    scan_queue_size: 20
 
     # Czas oczekiwania na transformacje TF
     transform_timeout: 1.0       # 1 sekunda daje bufor dla TF
