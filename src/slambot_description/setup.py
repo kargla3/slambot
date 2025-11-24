@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'mapping_robot_v1_description'
+package_name = 'slambot_description'
 
 setup(
     name=package_name,
@@ -19,11 +19,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='author',
-    maintainer_email='todo@todo.com',
-    description='The ' + package_name + ' package',
-    license='TODO: License declaration',
-    tests_require=['pytest'],
+    maintainer='Karol Głąbik',
+    maintainer_email='kargla@tlen.pl',
+    description='The slambot description package',
+    license='Apache License 2.0',
     entry_points={
         'console_scripts': [
         ],

@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
-<robot name="mapping_robot_v1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="slambot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:include filename="$(find mapping_robot_v1_description)/urdf/materials.xacro" />
-<xacro:include filename="$(find mapping_robot_v1_description)/urdf/mapping_robot_v1.trans" />
-<xacro:include filename="$(find mapping_robot_v1_description)/urdf/mapping_robot_v1.gazebo" />
+<xacro:include filename="$(find slambot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find slambot_description)/urdf/mapping_robot_v1.trans" />
+<xacro:include filename="$(find slambot_description)/urdf/mapping_robot_v1.gazebo" />
 <link name="base_link">
   <inertial>
     <origin xyz="-1.7537274868631598e-16 9.742930482573111e-18 -2.5442577058725186e-06" rpy="0 0 0"/>
@@ -13,14 +13,14 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -34,14 +34,14 @@
   <visual>
     <origin xyz="-0.1 -0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/front_left_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/front_left_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.1 -0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/front_left_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/front_left_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -55,14 +55,14 @@
   <visual>
     <origin xyz="0.1 -0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/back_left_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/back_left_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.1 -0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/back_left_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/back_left_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -80,14 +80,14 @@
   <visual>
     <origin xyz="0.1 0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/back_right_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/back_right_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0.1 0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/back_right_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/back_right_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -101,14 +101,14 @@
   <visual>
     <origin xyz="-0.1 0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/front_right_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/front_right_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="-0.1 0.084 0.007" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://mapping_robot_v1_description/meshes/front_right_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://slambot_description/meshes/front_right_link_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>

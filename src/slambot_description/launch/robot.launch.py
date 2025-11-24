@@ -6,7 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-    share_dir = get_package_share_directory('mapping_robot_v1_description')
+    share_dir = get_package_share_directory('slambot_description')
     xacro_file = os.path.join(share_dir, 'urdf', 'mapping_robot_v1.xacro')
     config_dir = os.path.join(share_dir, 'config', 'controllers.yaml')
     robot_description_config = xacro.process_file(xacro_file)

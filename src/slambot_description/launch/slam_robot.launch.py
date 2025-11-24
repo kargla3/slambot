@@ -6,7 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-    share_dir = get_package_share_directory('mapping_robot_v1_description')
+    share_dir = get_package_share_directory('slambot_description')
     xacro_file = os.path.join(share_dir, 'urdf', 'mapping_robot_v1.xacro')
     config_dir = os.path.join(share_dir, 'config', 'controllers.yaml')
     # slam_params_file = os.path.join(
@@ -60,7 +60,7 @@ def generate_launch_description():
         ),
         Node(
             package='slam_toolbox',
-            executable='sync_slam_toolbox_node',   # możesz też dać 'async_slam_toolbox_node'
+            executable='sync_slam_toolbox_node',
             name='slam_toolbox',
             output='screen',
             parameters=[slam_params_file]
