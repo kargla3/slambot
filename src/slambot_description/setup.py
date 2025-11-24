@@ -15,7 +15,8 @@ setup(
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'urdf'), glob('urdf/**/*', recursive=True)),
         (os.path.join('share', package_name, 'meshes'), glob('meshes/**/*', recursive=True)),
-        (os.path.join('share', package_name, 'config'), glob('config/**/*', recursive=True))
+        (os.path.join('share', package_name, 'config'), glob('config/**/*', recursive=True)),
+        (os.path.join('share', package_name, 'maps'), glob('maps/*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

@@ -10,6 +10,11 @@ from ament_index_python.packages import get_package_share_directory
 
 def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration('mode').perform(context)
+    map_file = os.path.join(
+        get_package_share_directory('slambot_description'),
+        'maps',
+        'default.yaml'
+    )
 
     share_dir = get_package_share_directory('slambot_description')
     xacro_file = os.path.join(share_dir, 'urdf', 'mapping_robot_v1.xacro')
@@ -73,23 +78,31 @@ def launch_setup(context, *args, **kwargs):
             ],
             output='screen'
         ),
-        Node(
-            package='nav2_map_server',
-            executable='map_server',
-            name='map_server',
-            parameters=[{'yaml_filename': PathJoinSubstitution([share_dir, 'maps', 'default.yaml'])}],
-            condition=IfCondition(f"'{mode}' == 'localization'")
-        ),
-        Node(
-            package='nav2_lifecycle_manager',
-            executable='lifecycle_manager',
-            name='lifecycle_manager_localization',
-            output='screen',
-            parameters=[{'autostart': True},
-                        {'node_names': ['map_server']}],
-            condition=IfCondition(f"'{mode}' == 'localization'")
-        )
     ]
+    if mode == 'localization':
+        print(f"--- Uruchamianie w trybie LOCALIZATION (z mapą: {map_file}) ---")
+        nodes_to_launch.append(
+            Node(
+                package='nav2_map_server',
+                executable='map_server',
+                name='map_server',
+                parameters=[{'yaml_filename': map_file}],
+                output='screen'
+            )
+        )
+        nodes_to_launch.append(
+            Node(
+                package='nav2_lifecycle_manager',
+                executable='lifecycle_manager',
+                name='lifecycle_manager_localization',
+                output='screen',
+                parameters=[{'autostart': True},
+                            {'node_names': ['map_server']}]
+            )
+        )
+    else:
+        print("--- Uruchamianie w trybie MAPPING (bez statycznej mapy) ---")
+
     return nodes_to_launch
 
 def generate_launch_description():

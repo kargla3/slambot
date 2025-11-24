@@ -7,7 +7,6 @@ slam_toolbox:
     base_frame: base_link
     scan_topic: /scan
     use_sim_time: false
-    mode: mapping
 
     # Scan Matching
     use_scan_matching: true
