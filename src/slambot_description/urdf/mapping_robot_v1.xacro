@@ -3,7 +3,6 @@
 
 <xacro:include filename="$(find slambot_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find slambot_description)/urdf/mapping_robot_v1.trans" />
-<xacro:include filename="$(find slambot_description)/urdf/mapping_robot_v1.gazebo" />
 <link name="base_link">
   <inertial>
     <origin xyz="-1.7537274868631598e-16 9.742930482573111e-18 -2.5442577058725186e-06" rpy="0 0 0"/>
