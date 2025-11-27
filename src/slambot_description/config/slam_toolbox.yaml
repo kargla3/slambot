@@ -7,14 +7,13 @@ slam_toolbox:
     base_frame: base_link
     scan_topic: /scan
     use_sim_time: false
-    mode: mapping
 
-    # map_file_name: /home/pi/slambot/src/slambot_description/maps/default.pgm
-    # map_start_at_dock: true
+    map_file_name: /home/pi/slambot/src/slambot_description/maps/test
+    map_start_at_dock: true
 
     # Scan Matching
     use_scan_matching: true
-    scan_queue_size: 20
+    scan_queue_size: 50
 
     # Czas oczekiwania na transformacje TF
     transform_timeout: 1.0       # 1 sekunda daje bufor dla TF
@@ -31,11 +30,11 @@ slam_toolbox:
     odom_alpha5: 0.05
 
     # Opcje mapy
-    resolution: 0.05              # 10 cm/pixel - mniej punktów = mniejsza gęstość mapy
+    resolution: 0.1              # 10 cm/pixel - mniej punktów = mniejsza gęstość mapy
     publish_period_sec: 0.1      # publikuj mapę co sekundę
-    map_update_interval: 5.0     # aktualizacja mapy co 0.5 sekundy
+    map_update_interval: 0.1     # aktualizacja mapy co 0.5 sekundy
     minimum_time_interval: 0.1   # minimalny odstęp między kolejnymi skanami
-    #optimize_every_n_nodes: 5      # optymalizacja mniej agresywna, żeby uniknąć przestawiania mapy
+    optimize_every_n_nodes: 5    # optymalizacja mniej agresywna, żeby uniknąć przestawiania mapy
 
     # Extrapolacja pozycji
     use_pose_extrapolation: true  # pozwala użyć odometrii do przewidywania pozycji skanu

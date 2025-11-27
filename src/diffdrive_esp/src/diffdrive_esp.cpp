@@ -24,20 +24,17 @@ hardware_interface::CallbackReturn DiffDriveESPHardware::on_init(
     return hardware_interface::CallbackReturn::ERROR;
   }
 
-  // Get parameters from URDF
   device_port_ = info_.hardware_parameters["device_port"];
   baud_rate_ = std::stoi(info_.hardware_parameters["baud_rate"]);
   timeout_ms_ = std::stoi(info_.hardware_parameters["timeout_ms"]);
   wheel_separation_ = std::stod(info_.hardware_parameters["wheel_separation"]);
   wheel_radius_ = std::stod(info_.hardware_parameters["wheel_radius"]);
 
-  // Initialize hardware states
   hw_positions_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_velocities_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   prev_positions_.resize(info_.joints.size(), 0.0);
 
-  // Check that we have exactly 2 joints (left and right wheels)
   if (info_.joints.size() != 2)
   {
     RCLCPP_ERROR(
@@ -46,7 +43,6 @@ hardware_interface::CallbackReturn DiffDriveESPHardware::on_init(
     return hardware_interface::CallbackReturn::ERROR;
   }
 
-  // Check joint interfaces
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
     if (joint.command_interfaces.size() != 1)
@@ -140,7 +136,6 @@ hardware_interface::CallbackReturn DiffDriveESPHardware::on_activate(
     return hardware_interface::CallbackReturn::ERROR;
   }
 
-  // Initialize positions and commands
   for (auto i = 0u; i < hw_positions_.size(); i++)
   {
     if (std::isnan(hw_positions_[i]))
@@ -167,7 +162,6 @@ hardware_interface::CallbackReturn DiffDriveESPHardware::on_deactivate(
 {
   RCLCPP_INFO(rclcpp::get_logger("DiffDriveESPHardware"), "Deactivating hardware...");
   
-  // Send zero velocities before disconnecting
   sendCommand(0.0, 0.0);
   
   disconnect();
@@ -214,7 +208,7 @@ hardware_interface::return_type DiffDriveESPHardware::read(
     RCLCPP_WARN_THROTTLE(
       rclcpp::get_logger("DiffDriveESPHardware"),
       clock, 2000,
-      "No encoder update received – keeping last state");
+      "No encoder update received - keeping last state");
     return hardware_interface::return_type::OK;
   }
 
@@ -224,7 +218,6 @@ hardware_interface::return_type DiffDriveESPHardware::read(
 hardware_interface::return_type DiffDriveESPHardware::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
-  // Send velocity commands to ESP
   if (!sendCommand(hw_commands_[0], hw_commands_[1]))
   {
     static rclcpp::Clock clock;
@@ -252,10 +245,8 @@ bool DiffDriveESPHardware::connect()
       return false;
     }
 
-    // Wait for ESP to initialize
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     
-    // Clear any pending data
     serial_conn_->flushInput();
     serial_conn_->flushOutput();
 
