@@ -9,7 +9,6 @@
 class Motor {
     int velocity = 500;
     double angle = 0;
-    //const double angle_per_revolution = 413.7;
     const double angle_per_revolution = 422.5;
     const double angle_per_step = 0.9;
     int step_PIN;

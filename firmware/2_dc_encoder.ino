@@ -10,26 +10,22 @@ const int IN4 = 7;
 const int ENCODER_C3 = 10;
 const int ENCODER_C4 = 11;
 
-// --- PWM ---
-const int PWM_FREQ = 500; // Hz
-const int PWM_RES = 8;     // 8-bit (0–255)
+const int PWM_FREQ = 500; 
+const int PWM_RES = 8;
 const int PWM_CH1 = 0;
 const int PWM_CH2 = 1;
 const int MIN_EFFECTIVE_PWM = 20;
 
-// ⚙️ Stałe silnika JGB37-520
 const float GEAR_RATIO = 56.0;
 const int PPR_MOTOR = 11;
 const int QUADRATURE_FACTOR = 4;
 const float TICKS_PER_REVOLUTION = PPR_MOTOR * GEAR_RATIO * QUADRATURE_FACTOR;
 int MAX_RPM = 187;
 
-// --- PID ---
 float KP = 1.5;
 float KI = 0.3;
 float KD = 0.05;
 
-// --- Struktura silnika ---
 struct Motor {
   int in1, in2;
   int pwmCh;
@@ -54,13 +50,9 @@ struct Motor {
     KP(kp), KI(ki), KD(kd) {}
 };
 
-// Motor motor1(IN1, IN2, PWM_CH1, 6.0, 3.0, 0.05);
-// Motor motor2(IN3, IN4, PWM_CH2, 6.0, 3.0, 0.05);
-
 Motor motor1(IN1, IN2, PWM_CH1, 1.5, 0.3, 0.05);
 Motor motor2(IN3, IN4, PWM_CH2, 1.5, 0.3, 0.05);
 
-// --- Obsługa enkoderów ---
 void IRAM_ATTR handleEncoder1() {
   int8_t MSB = digitalRead(ENCODER_C1);
   int8_t LSB = digitalRead(ENCODER_C2);
@@ -81,7 +73,6 @@ void IRAM_ATTR handleEncoder2() {
   motor2.lastEncoded = encoded;
 }
 
-// --- Sterowanie PWM ---
 void setMotor(Motor &m, int speed) {
   int absSpeed = constrain(abs(speed), 0, 255);
   if (speed > 0) {
@@ -103,7 +94,6 @@ void setMotor(Motor &m, int speed) {
   }
 }
 
-// --- PID ---
 void updatePID(Motor &m) {
   if (m.targetRPM == 0) {
     setMotor(m, 0);
@@ -147,7 +137,6 @@ void updatePID(Motor &m) {
   }
 }
 
-// --- Serial command handler ---
 void handleSerialInput() {
   static String input = "";
   while (Serial.available()) {
@@ -278,7 +267,6 @@ void handleSerialInput() {
   }
 }
 
-// --- Setup ---
 void setup() {
   Serial.begin(115200);
   delay(2000);
@@ -300,10 +288,9 @@ void setup() {
   ledcSetup(PWM_CH1, PWM_FREQ, PWM_RES);
   ledcSetup(PWM_CH2, PWM_FREQ, PWM_RES);
 
-  Serial.println("✅ 2x Silnik JGB37-520 z PID gotowe. Komendy: rpm1/rpm2 <val>, stop1/stop2, speed1/speed2 <val>, ticks1/ticks2, vel1/vel2 start/stop");
+  Serial.println("Silnik JGB37-520 z PID gotowe. Komendy: rpm1/rpm2 <val>, stop1/stop2, speed1/speed2 <val>, ticks1/ticks2, vel1/vel2 start/stop");
 }
 
-// --- Loop ---
 void loop() {
   handleSerialInput();
 

@@ -2,7 +2,7 @@
 import serial
 import struct
 
-PORT = "/dev/ttyUSB0"   # zmień na odpowiedni port, np. COM3 w Windows
+PORT = "/dev/ttyUSB0"
 BAUDRATE = 115200
 
 def main():
@@ -13,12 +13,10 @@ def main():
 
     try:
         while True:
-            # czytamy dane z seriala
             data = ser.read(ser.in_waiting or 1)
             if data:
                 buffer.extend(data)
 
-                # szukamy nagłówka i stopki
                 while b"LIDAR" in buffer and b"END\n\r" in buffer:
                     start = buffer.find(b"LIDAR")
                     end = buffer.find(b"END\n\r", start)
@@ -26,12 +24,11 @@ def main():
                         break
 
                     frame = buffer[start:end+len(b"END\n\r")]
-                    buffer = buffer[end+len(b"END\n\r"):]  # usuwamy już przeczytane
+                    buffer = buffer[end+len(b"END\n\r"):]
 
-                    # parsujemy ramkę
-                    if len(frame) > 7:  # minimalny rozmiar = nagłówek + size + stopka
+                    if len(frame) > 7:
                         size = frame[5] | (frame[6] << 8)
-                        payload = frame[7:-5]  # wyciągamy dane (distance/strength)
+                        payload = frame[7:-5]
 
                         print(f"\n📡 Frame received: {len(payload)} bytes (expected {size})")
                         for i in range(0, len(payload), 4):

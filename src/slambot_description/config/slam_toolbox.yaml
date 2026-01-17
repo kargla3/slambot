@@ -11,34 +11,25 @@ slam_toolbox:
     map_file_name: /home/pi/slambot/src/slambot_description/maps/test
     map_start_at_dock: true
 
-    # Scan Matching
     use_scan_matching: true
     scan_queue_size: 50
+    transform_timeout: 1.0
 
-    # Czas oczekiwania na transformacje TF
-    transform_timeout: 1.0       # 1 sekunda daje bufor dla TF
-
-    # Minimalny i maksymalny zasięg LIDAR-a
     minimum_laser_range: 0.1
     maximum_laser_range: 8.0
-
-    # Odometry i filtry (dla słabego LIDAR-a nie zwiększamy agresywności)
     odom_alpha1: 0.05
     odom_alpha2: 0.05
     odom_alpha3: 0.05
     odom_alpha4: 0.05
     odom_alpha5: 0.05
 
-    # Opcje mapy
-    resolution: 0.1              # 10 cm/pixel - mniej punktów = mniejsza gęstość mapy
-    publish_period_sec: 0.1      # publikuj mapę co sekundę
-    map_update_interval: 0.1     # aktualizacja mapy co 0.5 sekundy
-    minimum_time_interval: 0.1   # minimalny odstęp między kolejnymi skanami
-    optimize_every_n_nodes: 5    # optymalizacja mniej agresywna, żeby uniknąć przestawiania mapy
+    resolution: 0.1
+    publish_period_sec: 0.1
+    map_update_interval: 0.1
+    minimum_time_interval: 0.1
+    optimize_every_n_nodes: 5
 
-    # Extrapolacja pozycji
-    use_pose_extrapolation: true  # pozwala użyć odometrii do przewidywania pozycji skanu
+    use_pose_extrapolation: true
 
-    # Dodatkowe opcje dla stabilności przy małej liczbie punktów
     max_laser_range_scaling: 1.0
-    min_score: 0.6               # minimalny dopasowujący się skan
+    min_score: 0.6

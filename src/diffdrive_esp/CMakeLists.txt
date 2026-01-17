@@ -5,7 +5,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
   add_compile_options(-Wall -Wextra)
 endif()
 
-# find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
@@ -13,7 +12,6 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
 find_package(serial REQUIRED)
 
-# Create the hardware interface plugin
 add_library(
   diffdrive_esp
   SHARED
@@ -35,10 +33,8 @@ ament_target_dependencies(
   serial
 )
 
-# Export hardware plugins
 pluginlib_export_plugin_description_file(hardware_interface diffdrive_esp_plugin.xml)
 
-# Install
 install(
   DIRECTORY include/
   DESTINATION include/diffdrive_esp
