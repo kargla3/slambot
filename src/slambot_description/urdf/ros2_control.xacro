@@ -8,8 +8,8 @@
           <param name="device_port">/dev/ttyUSB0</param>
           <param name="baud_rate">115200</param>
           <param name="timeout_ms">10000</param>
-          <param name="wheel_separation">0.168</param>
-          <param name="wheel_radius">0.4</param>
+          <param name="wheel_separation">0.336</param>
+          <param name="wheel_radius">0.034</param>
       </hardware>
 
       <joint name="Obrot 1">

@@ -17,3 +17,12 @@ diff_cont:
     wheel_separation: 0.336
     wheel_radius: 0.034
     use_stamped_vel: false
+    linear.x.has_velocity_limits: true
+    linear.x.max_velocity: 0.5
+    linear.x.min_velocity: -0.5
+    linear.x.has_acceleration_limits: true
+    linear.x.max_acceleration: 0.8
+    angular.z.has_velocity_limits: true
+    angular.z.max_velocity: 2.0
+    angular.z.has_acceleration_limits: true
+    angular.z.max_acceleration: 2.0

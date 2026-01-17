@@ -126,7 +126,7 @@ void updatePID(Motor &m) {
   m.errorSum = constrain(m.errorSum, -500.0, 500.0);
   float derivative = (error - m.lastError) / deltaTime;
 
-  float feedForward = (m.targetRPM / MAX_RPM) * 150.0;
+  float feedForward = (m.targetRPM / MAX_RPM) * 255.0;
   float pidOutput = feedForward 
                 + m.KP * error 
                 + m.KI * m.errorSum 
@@ -161,12 +161,6 @@ void handleSerialInput() {
         motor2.targetRPM = targetRPM;
         motor1.running = true;
         motor2.running = true;
-        motor1.errorSum = 0;
-        motor2.errorSum = 0;
-        motor1.lastError = 0;
-        motor2.lastError = 0;
-        motor1.lastPidTime = millis();
-        motor2.lastPidTime = millis();
         Serial.printf("Motor 1 target RPM: %.2f\n", motor1.targetRPM);
         Serial.printf("Motor 2 target RPM: %.2f\n", motor2.targetRPM);
       } else if (input.equalsIgnoreCase("stop")) {
@@ -193,12 +187,6 @@ void handleSerialInput() {
           motor1.running = true;
           motor2.targetRPM = rpm2;
           motor2.running = true;
-          motor1.errorSum = 0;
-          motor2.errorSum = 0;
-          motor1.lastError = 0;
-          motor2.lastError = 0;
-          motor1.lastPidTime = millis();
-          motor2.lastPidTime = millis();
         }
       } else if (input.equals("ENC")) {
         long leftTicks = motor2.encoderTicks;
